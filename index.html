@@ -74,6 +74,44 @@ nav.scrolled .nav-mark img{height:32px;}
 @keyframes pulseRing{0%{transform:scale(0.9); opacity:0.6;} 100%{transform:scale(1.35); opacity:0;}}
 @media (max-width:600px){.float-btn{width:48px; height:48px; right:16px;} #whatsappFloat{bottom:16px;} #backToTop{bottom:74px;}}
 
+/* AI ASSISTANT */
+#aiAssistantFloat{position:fixed; left:26px; bottom:26px; z-index:900; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; background:linear-gradient(155deg, var(--gold-light), var(--gold-deep)); color:var(--ink); box-shadow:0 10px 30px -8px rgba(18,14,10,0.5); transition:transform .25s;}
+#aiAssistantFloat::before{content:''; position:absolute; inset:-6px; border-radius:50%; border:2px solid var(--gold); opacity:0.5; animation:pulseRing 2.2s ease-out infinite;}
+#aiAssistantFloat:hover{transform:scale(1.08);}
+#aiAssistantFloat .ai-badge{position:absolute; top:-4px; right:-4px; background:var(--maroon); color:var(--gold-light); font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:.05em; padding:2px 5px; border-radius:8px; border:1px solid var(--gold-light);}
+@media (max-width:600px){#aiAssistantFloat{left:16px; bottom:16px; width:50px; height:50px;}}
+
+#aiChatPanel{position:fixed; left:26px; bottom:98px; z-index:901; width:340px; max-width:88vw; max-height:480px; background:linear-gradient(165deg, var(--ivory), var(--parchment)); border:1px solid var(--line-gold); box-shadow:0 24px 60px -20px rgba(18,14,10,0.5); display:none; flex-direction:column; overflow:hidden;}
+#aiChatPanel.open{display:flex;}
+.ai-header{background:linear-gradient(155deg, var(--ink-2), var(--maroon-dark)); color:var(--gold-light); padding:16px 18px; display:flex; align-items:center; justify-content:space-between;}
+.ai-header-title{font-family:'Playfair Display',serif; font-weight:700; font-size:15px;}
+.ai-header-sub{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:#C9C1B4; letter-spacing:.05em; margin-top:2px;}
+.ai-header-close{cursor:pointer; font-size:20px; line-height:1; color:var(--gold-light); opacity:0.8;}
+.ai-header-close:hover{opacity:1;}
+.ai-messages{flex:1; overflow-y:auto; padding:16px 16px 8px; display:flex; flex-direction:column; gap:10px; max-height:280px;}
+.ai-msg{max-width:82%; font-size:13px; line-height:1.5; padding:10px 13px; border-radius:2px;}
+.ai-msg.bot{align-self:flex-start; background:#fff; border:1px solid var(--line); color:var(--ink);}
+.ai-msg.user{align-self:flex-end; background:linear-gradient(155deg, var(--maroon-light), var(--maroon)); color:var(--gold-light);}
+.ai-quick{display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px;}
+.ai-chip{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.03em; border:1px solid var(--gold-deep); color:var(--maroon); background:transparent; padding:6px 10px; cursor:pointer; transition:all .2s;}
+.ai-chip:hover{background:var(--maroon); color:var(--gold-light);}
+.ai-input-row{display:flex; border-top:1px solid var(--line); padding:10px; gap:8px;}
+.ai-input-row input{flex:1; border:1px solid var(--line); padding:9px 11px; font-size:13px; font-family:'Work Sans',sans-serif; outline:none; background:#fff;}
+.ai-input-row input:focus{border-color:var(--maroon);}
+.ai-send{background:linear-gradient(155deg, var(--maroon-light), var(--maroon)); color:var(--gold-light); border:none; padding:0 16px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase;}
+.ai-typing{align-self:flex-start; display:flex; gap:4px; padding:10px 13px; background:#fff; border:1px solid var(--line);}
+.ai-typing span{width:6px; height:6px; border-radius:50%; background:var(--gold-deep); animation:aiTypingDot 1.2s infinite;}
+.ai-typing span:nth-child(2){animation-delay:.2s;} .ai-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes aiTypingDot{0%,60%,100%{opacity:0.3; transform:translateY(0);} 30%{opacity:1; transform:translateY(-3px);}}
+
+/* SMART SEARCH */
+.smart-search{display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--gold-deep); padding:12px 16px; margin-bottom:26px; max-width:480px;}
+.smart-search svg{flex-shrink:0; color:var(--maroon);}
+.smart-search input{flex:1; border:none; outline:none; font-family:'Work Sans',sans-serif; font-size:14px; background:transparent; color:var(--ink);}
+.smart-search input::placeholder{color:var(--steel);}
+.search-count{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--steel); letter-spacing:.04em; margin-bottom:20px; display:none;}
+.no-results{display:none; text-align:center; padding:50px 20px; color:var(--steel); font-family:'IBM Plex Mono',monospace; font-size:13px;}
+
 /* LIGHTBOX */
 #lightbox{position:fixed; inset:0; background:rgba(18,14,10,0.92); z-index:2000; display:none; align-items:center; justify-content:center; padding:5vw;}
 #lightbox.open{display:flex;}
@@ -89,6 +127,9 @@ nav.scrolled .nav-mark img{height:32px;}
     linear-gradient(160deg, var(--ink) 0%, var(--maroon-dark) 55%, var(--ink) 100%);
 }
 .hero .damask{position:absolute; inset:0; opacity:0.5;}
+.hero-spotlight{position:absolute; inset:0; pointer-events:none; z-index:0; background:radial-gradient(circle 320px at var(--sx,50%) var(--sy,30%), rgba(242,214,128,0.14), transparent 70%); transition:background .1s;}
+#typedLine::after{content:''; display:inline-block; width:3px; height:0.85em; background:var(--gold-light); margin-left:6px; vertical-align:-2px; animation:caretBlink 0.9s steps(1) infinite;}
+@keyframes caretBlink{50%{opacity:0;}}
 .hero-corner{position:absolute; width:120px; height:120px; opacity:0.55;}
 .hero-corner.tl{top:24px; left:24px;}
 .hero-corner.br{bottom:24px; right:24px; transform:rotate(180deg);}
@@ -207,7 +248,7 @@ section{padding:110px 6vw; position:relative;}
 .prod-group-title{font-family:'Playfair Display',serif; font-weight:700; font-size:19px; letter-spacing:.02em; color:var(--maroon); margin:50px 0 22px; padding-bottom:10px; border-bottom:2px solid var(--gold-deep);}
 .prod-group-title:first-of-type{margin-top:0;}
 .prod-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-.prod-card{background:linear-gradient(165deg, #FFFFFF 0%, var(--ivory) 100%); display:flex; flex-direction:column; transition:box-shadow .3s, transform .3s; position:relative;}
+.prod-card{background:linear-gradient(165deg, #FFFFFF 0%, var(--ivory) 100%); display:flex; flex-direction:column; transition:box-shadow .3s, transform .1s ease-out; position:relative; transform-style:preserve-3d; will-change:transform;}
 .prod-card:hover{box-shadow:0 18px 40px -18px rgba(18,14,10,0.35); transform:translateY(-3px); z-index:2;}
 .prod-card::after{content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--maroon), var(--gold), var(--maroon)); opacity:0; transition:opacity .3s;}
 .prod-card:hover::after{opacity:1;}
@@ -325,6 +366,34 @@ footer{background:linear-gradient(180deg, var(--ink-2), #0A0806); border-top:1px
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 
+<div id="aiAssistantFloat" aria-label="Ask the Garv Gold Assistant">
+  <span class="ai-badge">SMART</span>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v4M9 12h.01M15 12h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 19v1.5M16 19v1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+</div>
+
+<div id="aiChatPanel">
+  <div class="ai-header">
+    <div>
+      <div class="ai-header-title">Garv Gold Assistant</div>
+      <div class="ai-header-sub">Smart product &amp; order helper</div>
+    </div>
+    <span class="ai-header-close" id="aiClose">&times;</span>
+  </div>
+  <div class="ai-messages" id="aiMessages">
+    <div class="ai-msg bot">Namaste! I can help with product info, capacities, gift sets, or connecting you to the team. What would you like to know?</div>
+  </div>
+  <div class="ai-quick" id="aiQuick">
+    <button class="ai-chip" data-q="What products do you make?">Products?</button>
+    <button class="ai-chip" data-q="Do you have gift sets?">Gift sets?</button>
+    <button class="ai-chip" data-q="Where are you located?">Location?</button>
+    <button class="ai-chip" data-q="How do I place a bulk order?">Bulk order?</button>
+  </div>
+  <div class="ai-input-row">
+    <input type="text" id="aiInput" placeholder="Type your question...">
+    <button class="ai-send" id="aiSend">Send</button>
+  </div>
+</div>
+
 <div id="lightbox"><span id="lightboxClose">&times;</span><img id="lightboxImg" src="" alt=""></div>
 
 <section class="hero">
@@ -338,7 +407,7 @@ footer{background:linear-gradient(180deg, var(--ink-2), #0A0806); border-top:1px
         <span class="badge">Make in India</span>
         <span class="badge">100% Stainless Steel</span>
       </div>
-      <h1>Grace your kitchen<br>with <span class="script">Elegance</span></h1>
+      <h1><span id="typedLine"></span><br>with <span class="script">Elegance</span></h1>
       <p class="hero-sub">Garv Gold crafts stainless steel hotpots, casseroles, tiffins and dinner sets from high quality steel coil — leakproof, rustproof and built to last, for the home and for the trade.</p>
       <div class="hero-cta">
         <a href="#inquiry" class="btn btn-primary">Enquire Now</a>
@@ -451,7 +520,14 @@ footer{background:linear-gradient(180deg, var(--ink-2), #0A0806); border-top:1px
       <p class="section-desc">Hotpots, casseroles, tiffins, storage and gift sets — every code below is ready to order.</p>
     </div>
 
-    <div class="filter-tabs reveal">
+    <div class="smart-search reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="text" id="productSearch" placeholder="Search by name or code — e.g. HP-01, casserole, tiffin...">
+    </div>
+    <div class="search-count" id="searchCount"></div>
+    <div class="no-results" id="noResults">No products match that search — try a different name or code.</div>
+
+    <div class="filter-tabs reveal" id="filterTabsRow">
       <button class="filter-tab active" data-filter="all">All Products</button>
       <button class="filter-tab" data-filter="group-1">Hotpots &amp; Casseroles</button>
       <button class="filter-tab" data-filter="group-2">Tiffins &amp; Storage</button>
@@ -788,7 +864,7 @@ footer{background:linear-gradient(180deg, var(--ink-2), #0A0806); border-top:1px
           <div class="info-row"><span>Nitin Jain</span><span><a href="tel:+919219730034">+91 92197 30034</a><br><a href="https://wa.me/918265830034" target="_blank" rel="noopener">WhatsApp +91 82658 30034</a></span></div>
           <div class="info-row"><span>Sachin Jain</span><span><a href="https://wa.me/919412335135" target="_blank" rel="noopener">WhatsApp +91 94123 35135</a></span></div>
           <div class="info-row"><span>Email</span><span><a href="mailto:garvgold20@gmail.com">garvgold20@gmail.com</a></span></div>
-          <div class="info-row"><span>Website</span><span>garvgold.odoo.com</span></div>
+          <div class="info-row"><span>Website</span><span>www.garvgold.in</span></div>
           <div class="info-row"><span>Social</span><span>Facebook &amp; Instagram — @garvgold</span></div>
         </div>
         <div class="map-frame">
@@ -859,12 +935,170 @@ footer{background:linear-gradient(180deg, var(--ink-2), #0A0806); border-top:1px
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 GARV GOLD — A NITIN STEELS BRAND, HAPUR</span>
+    <span>© 1994 GARV GOLD — A NITIN STEELS BRAND, HAPUR</span>
     <span>100% STAINLESS STEEL · EXPORT QUALITY · MAKE IN INDIA</span>
   </div>
 </footer>
 
 <script>
+  // typing headline effect
+  (function typeHeadline(){
+    const el = document.getElementById('typedLine');
+    if(!el) return;
+    const text = 'Grace your kitchen';
+    let i = 0;
+    function tick(){
+      el.textContent = text.slice(0, i);
+      i++;
+      if(i <= text.length){ setTimeout(tick, 55); }
+    }
+    tick();
+  })();
+
+  // hero cursor spotlight
+  (function heroSpotlight(){
+    const hero = document.querySelector('.hero');
+    if(!hero) return;
+    const spot = document.createElement('div');
+    spot.className = 'hero-spotlight';
+    hero.appendChild(spot);
+    hero.addEventListener('mousemove', (e)=>{
+      const r = hero.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      hero.style.setProperty('--sx', x + '%');
+      hero.style.setProperty('--sy', y + '%');
+    });
+  })();
+
+  // 3D tilt on product cards
+  document.querySelectorAll('.prod-card').forEach(card=>{
+    card.addEventListener('mousemove', (e)=>{
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(700px) rotateY(${px*8}deg) rotateX(${-py*8}deg) translateY(-3px)`;
+    });
+    card.addEventListener('mouseleave', ()=>{ card.style.transform = ''; });
+  });
+
+  // smart product search
+  (function smartSearch(){
+    const input = document.getElementById('productSearch');
+    if(!input) return;
+    const cards = Array.from(document.querySelectorAll('.prod-card'));
+    const groups = Array.from(document.querySelectorAll('.prod-group'));
+    const tabsRow = document.getElementById('filterTabsRow');
+    const searchCount = document.getElementById('searchCount');
+    const noResults = document.getElementById('noResults');
+
+    input.addEventListener('input', ()=>{
+      const q = input.value.trim().toLowerCase();
+      if(!q){
+        tabsRow.style.display = '';
+        searchCount.style.display = 'none';
+        noResults.style.display = 'none';
+        groups.forEach(g=>{
+          const activeTab = document.querySelector('.filter-tab.active');
+          const filter = activeTab ? activeTab.getAttribute('data-filter') : 'all';
+          g.style.display = (filter === 'all' || g.getAttribute('data-group') === filter) ? '' : 'none';
+        });
+        cards.forEach(c=> c.style.display = '');
+        return;
+      }
+      tabsRow.style.display = 'none';
+      let matchCount = 0;
+      groups.forEach(g=> g.style.display = '');
+      cards.forEach(card=>{
+        const text = card.textContent.toLowerCase();
+        const match = text.includes(q);
+        card.style.display = match ? '' : 'none';
+        if(match) matchCount++;
+      });
+      groups.forEach(g=>{
+        const visibleCards = g.querySelectorAll('.prod-card:not([style*="display: none"])');
+        const title = g.querySelector('.prod-group-title');
+        if(title) title.style.display = visibleCards.length ? '' : 'none';
+      });
+      searchCount.style.display = '';
+      searchCount.textContent = matchCount + (matchCount === 1 ? ' product found' : ' products found');
+      noResults.style.display = matchCount === 0 ? '' : 'none';
+    });
+  })();
+
+  // AI assistant (rule-based smart helper, runs entirely in your browser)
+  (function aiAssistant(){
+    const floatBtn = document.getElementById('aiAssistantFloat');
+    const panel = document.getElementById('aiChatPanel');
+    const closeBtn = document.getElementById('aiClose');
+    const messages = document.getElementById('aiMessages');
+    const input = document.getElementById('aiInput');
+    const sendBtn = document.getElementById('aiSend');
+    const quickBtns = document.querySelectorAll('.ai-chip');
+    if(!floatBtn) return;
+
+    floatBtn.addEventListener('click', ()=> panel.classList.toggle('open'));
+    closeBtn.addEventListener('click', ()=> panel.classList.remove('open'));
+
+    const knowledge = [
+      { keys: ['hotpot','hot pot'], reply: "Our Hot & Cold Hotpots (HP-01 to HP-08) hold 5,000–30,000 ml and keep food hot or cold for 8–10 hrs. PUF insulated with a stainless steel interior." },
+      { keys: ['casserole'], reply: "We make several casserole lines — Classic (CCL), Belly, Contura, and 24G versions — ranging 1,000–7,000 ml, all double-wall insulated." },
+      { keys: ['tiffin'], reply: "Our Hot & Cold Tiffins (HCT-01 to HCT-08) come in 9x2 to 10x5 sizes, PUF insulated for meals on the go." },
+      { keys: ['gift', 'mangaldwar', 'wedding', 'marriage'], reply: "Mangaldwar is our tiered gift set (11 or 12 pcs.) made for marriage gifting. We also do a 63-piece Dinner Set (DS63) for full table settings." },
+      { keys: ['bucket', 'pawali', 'matka', 'barni', 'storage'], reply: "For storage we offer Amul Buckets, Matka Pawali, Plain Pawali Laser, Belgium Boxes, and Barni Classic/Tango in various gauges and sizes." },
+      { keys: ['bulk', 'wholesale', 'trade', 'order', 'quantity'], reply: "For bulk or trade orders, use the Inquiry form further down the page, or WhatsApp us directly — Nitin Jain handles bulk enquiries personally." },
+      { keys: ['location', 'address', 'where', 'hapur'], reply: "We're based at Nitin Steels, Modinagar Road, Hapur – 245101, Uttar Pradesh. There's a map and directions link in the Find Us section." },
+      { keys: ['contact', 'phone', 'call', 'number'], reply: "You can call or WhatsApp Nitin Jain at +91 92197 30034, or Sachin Jain on WhatsApp at +91 94123 35135." },
+      { keys: ['catalogue', 'catalog', 'pdf', 'brochure'], reply: "Our full catalogue is available via the 'View Products' button in the hero section — it opens the PDF with every product and code." },
+      { keys: ['gauge', 'material', 'steel', 'quality'], reply: "Everything is made from high quality stainless steel coil — leakproof, rustproof, crack resistant, and available in 22G, 24G and 26G depending on the product." },
+      { keys: ['price', 'cost', 'rate'], reply: "Pricing depends on gauge, capacity and order quantity, so it's best shared directly — please use the Inquiry form or WhatsApp and we'll quote you quickly." },
+      { keys: ['history', 'since', 'established', 'generation', 'jain'], reply: "Garv Gold was established in 1994 by Mr. Virendra Kumar Jain. Today it's run by the 2nd generation (Nitin & Sachin Jain) with the 3rd generation, Hirim Jain, now on board too." },
+      { keys: ['products what', 'what products', 'range'], reply: "We manufacture hotpots, casseroles, tiffins, storage pawalis, buckets, barnis, and gift & dinner sets — all in stainless steel. Check the Product Range section above for full details." },
+    ];
+
+    function findReply(q){
+      const lower = q.toLowerCase();
+      for(const item of knowledge){
+        if(item.keys.some(k=> lower.includes(k))) return item.reply;
+      }
+      return "I don't have a ready answer for that, but our team can help directly — try the Inquiry form below or WhatsApp us at +91 82658 30034.";
+    }
+
+    function addMessage(text, cls){
+      const div = document.createElement('div');
+      div.className = 'ai-msg ' + cls;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function respondTo(q){
+      addMessage(q, 'user');
+      const typing = document.createElement('div');
+      typing.className = 'ai-typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      messages.appendChild(typing);
+      messages.scrollTop = messages.scrollHeight;
+      setTimeout(()=>{
+        typing.remove();
+        addMessage(findReply(q), 'bot');
+      }, 650 + Math.random()*400);
+    }
+
+    sendBtn.addEventListener('click', ()=>{
+      const q = input.value.trim();
+      if(!q) return;
+      respondTo(q);
+      input.value = '';
+    });
+    input.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ sendBtn.click(); }
+    });
+    quickBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=> respondTo(btn.getAttribute('data-q')));
+    });
+  })();
+
   // reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{
